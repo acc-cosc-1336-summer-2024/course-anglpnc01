@@ -60,9 +60,9 @@ def handle_menu(select): #user selected 1, 2 , or 3
 
     elif(select == '2'):
         select_2()
-    #elif(select == '3'):
-        #select_3()
-    #else:
+    elif(select == '3'):
+        select_3()
+    else:
         print('Exiting...')   
 
 def select_1():
@@ -81,3 +81,15 @@ def select_2():
     result = get_dna_complement(s_complement_)
 
     print(f'The complement of your DNA strand {s_complement_} is {result}')
+
+def select_3():
+    choice = input('Would you like to continue? Yes or No?: ')
+    if choice == 'Yes':
+        run_menu()
+    elif choice == 'No':
+        print('Exiting...')
+        exit()
+    else:
+        print('Invalid Option')
+
+
