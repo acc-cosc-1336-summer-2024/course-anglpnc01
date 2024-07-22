@@ -1,47 +1,58 @@
-#using a define distance rule
-def difference(char1, char2):
+#comparisons between a data set and itself in the list
+#get_p_distance between s1 and s2 = strings in the list #
+# use a matrix
+#return matrix to the corresponding p_distance
+#def get_p_distance(list1, list2)
+#def get_p_distance_matrix(list1)
+#use get_p_distance to get distance between two lists = i.e '0.40000'
+#save to p_distance_matrix[i][j]
+#taxa list = ???
 
-    if char1 == char2:
-        
-        return 0
-    
-    else:
-        return 1
-    
+data = [
+    ['T', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'A'],  # list1
+    ['G', 'A', 'T', 'T', 'C', 'A', 'T', 'T', 'T', 'C'],  # list2
+    ['T', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'T'],  # list3
+    ['G', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'A']   # list4
+]
 
 def get_p_distance(list1, list2):
-
+    
     if len(list1) != len(list2):
 
-        print('DNA strands not the same length')
-
-    L = len(list1)
-    mismatches = sum(L(list1[i], list2[i]) for i in range(L))
+        print("Lists must be of the same length")
     
-    p_distance = mismatches / L
+    num_differences = sum(1 for i in range(len(list1)) if list1[i] != list2[i])
     
-    return p_distance
+    p_distance = num_differences / len(list1)
+    
+    formatted_p_distance = f"{p_distance:.5f}"
+    
+    return formatted_p_distance
 
+
+p_distance = get_p_distance(data[0], data[1])
+
+print(p_distance)
 
 def get_p_distance_matrix(list1):
 
-    master_list = [
- 	
- ['T','T','T','C','C','A','T','T','T','A'],#list1
- 	
- ['G','A','T','T','C','A','T','T','T','C'],#list2
- 	
- ['T','T','T','C','C','A','T','T','T','T'],#list3
- 	
- ['G','T','T','C','C','A','T','T','T','A']#list4
- 	
-]
+    list = []
 
-    result_list1_list2 = get_p_distance(master_list[0], master_list[1])
-    print(f'Result is: {result_list1_list2}')
+    for i in range(len(data)):
+    
+        row_list = []
 
-    result_list1_list3 = get_p_distance(master_list[0], master_list[2])
-    print(f'Result is: {result_list1_list3}')
+        for j in range(i + 1, list):
 
-    result_list1_list4 = get_p_distance(master_list[0], master_list[3])
-    print(f'Result is: {result_list1_list4}')
+            s1 = [i]
+            s2 = [j]
+
+            p_distance = get_p_distance(s1, s2)
+
+        list.append(row_list)
+    
+    print(p_distance)
+
+results = get_p_distance_matrix(data)
+
+print(results)
