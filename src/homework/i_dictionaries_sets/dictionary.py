@@ -30,28 +30,29 @@ def get_p_distance(list1, list2):
     return formatted_p_distance
 
 
-p_distance = get_p_distance(data[0], data[1])
+p_distance_0 = get_p_distance(data[0], data[1])
 
-print(p_distance)
+print(p_distance_0)
 
-def get_p_distance_matrix(list1):
+def get_p_distance_matrix(data):
 
-    list = []
+    iterate_list = len(data)
+    results = []
+    for i in range(iterate_list):
 
-    for i in range(len(data)):
+        #list = []
+        
+
+        for j in range(i + 1, iterate_list):
+
+            s1 = data[i]
+            s2 = data[j]
+
+            p_distance =  get_p_distance(s1, s2)
+
+            results.append(p_distance)
     
-        row_list = []
-
-        for j in range(i + 1, list):
-
-            s1 = [i]
-            s2 = [j]
-
-            p_distance = get_p_distance(s1, s2)
-
-        list.append(row_list)
-    
-    print(p_distance)
+    return results
 
 results = get_p_distance_matrix(data)
 
