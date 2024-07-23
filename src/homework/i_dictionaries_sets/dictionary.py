@@ -16,44 +16,41 @@ data = [
 ]
 
 def get_p_distance(list1, list2):
-    
+
     if len(list1) != len(list2):
 
-        print("Lists must be of the same length")
+        print('Invalid Data')
+
+    list_positions = len(list1)
     
-    num_differences = sum(1 for i in range(len(list1)) if list1[i] != list2[i])
-    
-    p_distance = num_differences / len(list1)
-    
-    formatted_p_distance = f"{p_distance:.5f}"
-    
-    return formatted_p_distance
+    list_difference = sum(.1 for i in range(list_positions) if list1[i] != list2[i])
 
+    if list_positions > 0:
+        p_distance = list_difference / list_positions
+    else:
+        p_distance = 0.0
 
-p_distance_0 = get_p_distance(data[0], data[1])
+    return f"{p_distance:.5f}"
 
-print(p_distance_0)
+def get_p_distance_matrix(list1):
 
-def get_p_distance_matrix(data):
+    master_list = len(data)
 
-    iterate_list = len(data)
-    results = []
-    for i in range(iterate_list):
+    p_matrix = [[0.0] * master_list for _ in range(master_list)]
 
-        #list = []
-        
+    for i in range (master_list):
+        for j in range(master_list):
+            p_matrix[i][j] = get_p_distance(data[i], data[j])
 
-        for j in range(i + 1, iterate_list):
+    return p_matrix
 
-            s1 = data[i]
-            s2 = data[j]
+p_distances = get_p_distance_matrix(data)
 
-            p_distance =  get_p_distance(s1, s2)
+formatted_rows = []
+for row in p_distances:
+    formatted_row = ' '.join([f"{value:.5}" for value in row])
+    formatted_rows.append(formatted_row)
 
-            results.append(p_distance)
-    
-    return results
-
-results = get_p_distance_matrix(data)
-
-print(results)
+# Print each formatted row individually
+for formatted_row in formatted_rows:
+    print(formatted_row)
